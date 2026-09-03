@@ -1,0 +1,75 @@
+*Your starting point:** comfortable with Java syntax, need to build DSA fundamentals for FAANG-style interviews.
+ 
+This is your reference doc — bookmark it and check off phases as we go through them together in chat. Each phase lists what to learn, the Java-specific tools you'll use, and the problem *patterns* to drill (not stealing exact wording from any question bank, but here are the shapes of problems worth practicing).
+ 
+---
+ 
+## How to use this guide
+- Go phase by phase — don't skip Phase 0, even if it feels basic. Interviewers penalize sloppy complexity analysis more than they reward clever solutions.
+- For each phase: understand the concept → see it coded in Java → solve 5-8 problems in that pattern before moving on.
+- Come back to older phases periodically. DSA retention needs spaced repetition, not one-and-done.
+---
+ 
+## Phase 0: Foundations
+- **Big-O notation**: time and space complexity, best/worst/average case, amortized analysis
+- **Java Collections Framework overview**: `ArrayList`, `LinkedList`, `HashMap`, `HashSet`, `TreeMap`, `TreeSet`, `ArrayDeque`, `PriorityQueue`
+- **Java gotchas interviewers notice**: `==` vs `.equals()` for objects, Integer caching (-128 to 127), autoboxing overhead, `StringBuilder` vs string concatenation in loops, arrays vs `ArrayList` tradeoffs
+## Phase 1: Arrays & Strings
+- Traversal tricks, in-place manipulation, prefix sums
+- **Patterns:** two pointers, sliding window, Kadane's-style subarray problems
+- **Java tools:** `Arrays.sort()`, `Arrays.fill()`, `String.toCharArray()`, `StringBuilder`
+## Phase 2: Hashing
+- How `HashMap`/`HashSet` work internally (hashing, buckets, load factor)
+- The `hashCode()`/`equals()` contract — comes up a lot in interviews
+- **Patterns:** frequency counting, grouping/anagram problems, duplicate detection
+## Phase 3: Linked Lists
+- Build singly and doubly linked lists from scratch in Java (no cheating with the built-in `LinkedList` — you need to understand the pointers)
+- **Patterns:** fast/slow pointer (cycle detection), reversal, merging sorted lists
+## Phase 4: Stacks & Queues
+- **Java tool:** `ArrayDeque` as both stack and queue (faster than `Stack`/`LinkedList` for this)
+- **Patterns:** balanced brackets, monotonic stack, BFS traversal queues
+## Phase 5: Trees
+- Binary trees and BSTs, built from scratch
+- Traversals: pre-order, in-order, post-order (recursive AND iterative), level-order (BFS)
+- **Patterns:** validate BST, lowest common ancestor, balanced-tree checks, path sum problems
+## Phase 6: Heaps / Priority Queues
+- **Java tool:** `PriorityQueue` (min-heap by default — use `Comparator.reverseOrder()` for max-heap)
+- **Patterns:** k-th largest element, top-k frequent, merge k sorted lists
+## Phase 7: Graphs
+- Adjacency list vs adjacency matrix representation
+- BFS, DFS, Union-Find (Disjoint Set Union)
+- **Patterns:** connected components, shortest path (Dijkstra with `PriorityQueue`), topological sort, cycle detection
+## Phase 8: Recursion & Backtracking
+- Thinking in recursion trees, identifying base cases
+- **Patterns:** permutations, combinations, subsets, N-queens style constraint problems
+## Phase 9: Dynamic Programming
+- Memoization (top-down) vs tabulation (bottom-up)
+- **Patterns:** 1D DP (climbing stairs, house robber), 2D DP (unique paths, knapsack), string DP (longest common subsequence, edit distance)
+## Phase 10: Greedy & Sorting
+- Recognizing when a greedy choice is provably optimal
+- **Java tools:** `Arrays.sort()` / `Collections.sort()` with custom `Comparator`
+- Know how merge sort and quicksort work well enough to implement from memory (occasionally asked directly)
+## Phase 11: Bit Manipulation & Tries (higher-level, optional but great for standing out)
+- XOR tricks, bitmasking for subsets
+- Trie structure for prefix-based string search
+---
+ 
+## Suggested 10-week timeline
+| Weeks | Focus |
+|---|---|
+| 1 | Phase 0 + Phase 1 (Arrays/Strings) |
+| 2 | Phase 2 (Hashing) + review |
+| 3 | Phase 3 (Linked Lists) |
+| 4 | Phase 4 (Stacks/Queues) |
+| 5-6 | Phase 5 (Trees) — biggest topic, give it room |
+| 7 | Phase 6 (Heaps) |
+| 8 | Phase 7 (Graphs) |
+| 9 | Phase 8 (Recursion/Backtracking) |
+| 10+ | Phase 9-11 (DP, Greedy, Bit/Tries) + mock interviews |
+ 
+## Practice strategy
+- After each phase, solve problems **by pattern**, not randomly — repetition on one pattern builds real recognition speed.
+- Once you've covered Phases 0-7, start timed mock problems mixing patterns, since real interviews won't tell you which pattern applies.
+- Always state time/space complexity out loud when solving — it's part of the interview signal, not an afterthought.
+---
+ 
