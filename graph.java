@@ -1186,4 +1186,133 @@ public static void main(String[] args){
     }
 }
 
+/* disioin set ds */ // using the parent +union by rank appraoch.///
+ * import java.util.*;
+ * public class graph{
+ * static class Edge{
+ * int src;
+ * int dest;
+ * public Edge(int s,int d){
+ * this.src=s;
+ * this.dest=d;
+ * }
+ * }
+ * public static void createGraph(ArrayList<Edge> graph[]){
+ * for(int i=0;i<graph.length;i++){
+ * graph[i]=new ArrayList<Edge>();
+ * }
+ * graph[0].add(new Edge(0,1));
+ * graph[0].add(new Edge(0,2));
+ * 
+ * graph[1].add(new Edge(1,0));
+ * graph[1].add(new Edge(1,3));
+ * 
+ * graph[2].add(new Edge(2,0));
+ * graph[2].add(new Edge(2,4));
+ * 
+ * graph[3].add(new Edge(3,1));
+ * graph[3].add(new Edge(3,5));
+ * 
+ * graph[4].add(new Edge(4,2));
+ * graph[4].add(new Edge(4,5));
+ * 
+ * graph[5].add(new Edge(5,3));
+ * graph[5].add(new Edge(5,4));
+ * }
+ * public static int find(int parent[],int v){
+ * if(parent[v]==v){
+ * return v;
+ * }
+ * return find(parent,parent[v]);
+ * }
+ * public static void union(int parent[],int rank[],int v1,int v2){
+ * int root1=find(parent,v1);
+ * int root2=find(parent,v2);
+ * 
+ * if(root1!=root2){
+ * if(rank[root1]<rank[root2]){
+ * parent[root1]=root2;
+ * }else if(rank[root1]>rank[root2]){
+ * parent[root2]=root1;
+ * }else{
+ * parent[root2]=root1;
+ * rank[root1]++;
+ * }
+ * }
+ * }
+ * public static void main(String[] args){
+ * int V=6;
+ * 
+ * @SuppressWarnings("unchecked")
+ * ArrayList<Edge> graph[]=new ArrayList[V];
+ * createGraph(graph);
+ * 
+ * int parent[]=new int[V];
+ * int rank[]=new int[V];
+ * 
+ * for(int i=0;i<V;i++){
+ * parent[i]=i;
+ * rank[i]=0;
+ * }
+ * 
+ * union(parent,rank,0,1);
+ * union(parent,rank,1,3);
+ * union(parent,rank,2,4);
+ * union(parent,rank,4,5);
+ * 
+ * System.out.println("Parent array: "+Arrays.toString(parent));
+ * System.out.println("Rank array: "+Arrays.toString(rank));
+ * }
+ * }
+ 
+public class graph {
+    static int n = 7;
+    static int par[] = new int[n];
+    static int rank[] = new int[n];
+
+    public static void init() {
+        for (int i = 0; i < n; i++) {
+            par[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    public static int find(int x) {
+        if (par[x] == x) {
+            return x;
+        }
+        return par[x] = find(par[x]);
+    }
+
+    public static void union(int a, int b) {
+        int parA = find(a);
+        int parB = find(b);
+
+        if (rank[parA] == rank[parB]) {
+            par[parB] = parA;
+            rank[parA]++;
+        } else if (rank[parA] < rank[parB]) {
+            par[parA] = parB;
+        } else if (rank[parA] > rank[parB]) {
+            par[parB] = parA;
+        } else {
+            par[parB] = parA;
+        }
+    }
+
+    public static void main(String[] args) {
+        init();
+        union(1, 3);
+        System.out.println(find(3));
+        union(2, 4);
+        union(3, 6);
+        union(1, 4);
+        System.out.println(find(3));
+        System.out.println(find(4));
+        union(1, 5);
+
+        // System.out.println("Parent array: " + Arrays.toString(par));
+        // System.out.println("Rank array: " + Arrays.toString(rank));
+    }
+}
 
