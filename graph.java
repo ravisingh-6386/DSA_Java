@@ -1316,3 +1316,174 @@ public class graph {
     }
 }
 
+/*kruskal's algorithm. */
+import java.util.*;
+public class graph{
+    static class Edge implements Comparable<Edge>{
+        int src;
+        int dest;
+        int wt;
+        public Edge(int s,int d,int w){
+            this.src=s;
+            this.dest=d;
+            this.wt=w;
+        }
+        @Override
+        public int compareTo(Edge e2){// sort in ascending order.
+            return this.wt-e2.wt;
+        }
+}
+static  void  createGraph(ArrayList<Edge> edges){
+    edges.add(new Edge(0,1,10));
+    edges.add(new Edge(0,2,15));
+    edges.add(new Edge(0,3,30));
+    edges.add(new Edge(1,3,40));
+    edges.add(new Edge(2,3,50));
+}
+    static int n=4;
+    static int par[]=new int[n];
+    static int rank[]=new int[n];
+    public static void init(){
+        for(int i=0;i<n;i++){
+            par[i]=i;
+            rank[i]=0;
+        }
+    }
+    public static int find(int x){
+        if(par[x]==x){
+            return x;
+        }
+        return par[x]=find(par[x]);
+    }
+    public static void union(int a,int b){
+        int parA=find(a);
+        int parB=find(b);
+
+        if(rank[parA]==rank[parB]){
+            par[parB]=parA;
+            rank[parA]++;
+        }else if(rank[parA]<rank[parB]){
+            par[parA]=parB;
+        }else{
+            par[parB]=parA;
+        }
+    }
+    public static void kruskalMST(ArrayList<Edge> edges,int V){
+        init();
+        Collections.sort(edges);
+        int mstCost=0;
+        int count=0;
+        for(int i=0;count<V-1;i++){
+            Edge e=edges.get(i);
+            int parA=find(e.src);
+            int parB=find(e.dest);
+            if(parA!=parB){
+                union(parA,parB);
+                mstCost+=e.wt;
+                count++;
+            }
+        }
+        System.out.println("Minimum cost of spanning tree: "+mstCost);
+    }
+    public static void main(String[] args){
+        int V=4;
+        ArrayList<Edge> edges=new ArrayList<>();
+        createGraph(edges);
+        kruskalMST(edges,V); 
+    }
+}
+
+/*strongly connected components */ /*solve using kosaraju's algorithm */ // t.c- O(V+E) s.c-O(V)
+import java.util.*;
+
+public class graph {
+    public static class Edge {
+        int src;
+        int dest;
+
+        public Edge(int s, int d) {
+            this.src = s;
+            this.dest = d;
+        }
+    }
+
+    public static void createGraph(ArrayList<Edge> graph[]) {
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<Edge>();
+        }
+        graph[0].add(new Edge(0, 2));
+        graph[0].add(new Edge(0, 3));
+        graph[1].add(new Edge(1, 0));
+        graph[2].add(new Edge(2, 1));
+        graph[3].add(new Edge(3, 4));
+    }
+// 1 case.
+    public static void topsort(ArrayList<Edge> graph[], int curr, boolean vis[], Stack<Integer> stack) {
+        vis[curr] = true;
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!vis[e.dest]) {
+                topsort(graph, e.dest, vis, stack);
+            }
+        }
+        stack.push(curr);   
+    }
+
+    public static void dfs(ArrayList<Edge> graph[], int curr, boolean vis[]) {
+        vis[curr] = true;
+        System.out.print(curr + " ");
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e=graph[curr].get(i);
+            if(!vis[e.dest]){//fasle.
+                dfs(graph, e.dest, vis);
+            }
+        }
+    }
+
+    public static void kosarajuSCC(ArrayList<Edge> graph[], int V) {
+        boolean vis[] = new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+
+        // Step 1: Perform DFS and fill the stack with vertices in finishing order
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                topsort(graph, i, vis, stack);
+            }
+        }
+
+        // Step 2: Create the transposed graph
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge>[] transposedGraph = (ArrayList<Edge>[]) new ArrayList<?>[V];
+        for (int i = 0; i < V; i++) {
+            vis[i]=false;
+            transposedGraph[i] = new ArrayList<Edge>();
+        }
+        for (int i = 0; i < V; i++) {
+            for (Edge e : graph[i]) {
+                transposedGraph[e.dest].add(new Edge(e.dest, e.src));// reverse the edges.
+            }
+        }
+
+        // Step 3: Perform DFS on the transposed graph in the order of the stack
+        Arrays.fill(vis, false);
+        System.out.println("Strongly Connected Components:");
+        while (!stack.isEmpty()) {
+            int curr = stack.pop();
+            if (!vis[curr]) {
+                System.out.print("SCC: ");
+                dfs(transposedGraph, curr, vis);//scc.
+                System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 5;
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge> graph[] = new ArrayList[V];
+        createGraph(graph);
+        kosarajuSCC(graph, V);
+    }
+}
+
+
