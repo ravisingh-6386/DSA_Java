@@ -307,7 +307,7 @@ sum = 10
 
 (2,2,2,2,2), (2,2,3,3), {2,2,6), (2,3,5) and (5,5)
 ang= 5 */
-/*import java.util.*;
+import java.util.*;
 public class dp{
     // public static int coinChange(int coins[],int sum){
     //     int n=coins.length;
@@ -353,7 +353,7 @@ public class dp{
         int sum=sc.nextInt();
         System.out.println(coinChange(coins,sum));
     }
-}*/
+}
 
 /*Problem->Rod Cutting.
 Given a rod of length n inches and an array of prices that includes prices of all pieces of size smaller than n.
@@ -363,7 +363,7 @@ price
 rodLength = 8
 =12345678
 = 1 5 8 9 10 17 17 20 */
-/*import java.util.*;
+import java.util.*;
 public class dp{
     // public static int rodCutting(int price[],int n){
     //     int dp[]=new int[n+1];
@@ -413,7 +413,7 @@ public class dp{
         }
  
     }
-}*/
+}
 
 /*Problem-(Longest Common Subsequence).
 A subsequence of a string is a new string generated from the original string with some characters (can be none)
@@ -424,7 +424,7 @@ ans = 3 ll"ace"
 
 str1 = "abcdge", str2 = "abedg"
 ans = 4 ll"abdg" */
-/*import java.util.*;
+import java.util.*;
 public class dp{
     // recursive method.
     public static int lcs(String str1,String str2,int n,int m){
@@ -494,11 +494,11 @@ public class dp{
                 dp[i][j]=-1;
             }
         }
-        // System.out.println(lcs(str1,str2,n,m));
-        // System.out.println(lcs2(str1,str2,n,m,dp));
+        System.out.println(lcs(str1,str2,n,m));
+        System.out.println(lcs2(str1,str2,n,m,dp));
          System.out.println(lcsTab(str1,str2));
     }
-}*/
+}
 
 /* Problem= S1 = "ABCDE", S2 = "ABGCE"
             ans = 2 // "AB"
@@ -508,7 +508,7 @@ a substring is a contiguous sequence of characters within a string
 
 S1 = "ABCDGH", S2 = "ACDGHR"
 ans = 4 // "CDGH" */
-/*import java.util.*;
+import java.util.*;
 public class dp{
      public static int lcsTab(String s1,String s2){
         int n=s1.length();
@@ -549,12 +549,12 @@ public class dp{
         }
         System.out.println(lcsTab(s1, s2));
     }
-}*/
+}
 
 /*Problem: Longest Increasing Subsequence.
 arr[] = {50, 3, 10, 7, 40, 80}
 Length of LIS = 4 */
-/*import java.util.*;
+import java.util.*;
 
 public class dp{
     public static int lcs(int arr1[],int arr2[]){
@@ -596,7 +596,7 @@ public class dp{
         int arr[]={50, 3, 10, 7, 40, 80};
         System.out.println(lis(arr));
     }
-}*/
+}
 
 /*Leet code 72=Edit Distance.
 
