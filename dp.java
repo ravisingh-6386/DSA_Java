@@ -662,7 +662,6 @@ Explanation: The array cannot be partitioned into equal sum subsets.
  
 
 Constraints:
-
 1 <= nums.length <= 200
 1 <= nums[i] <= 100 */
 public class dp{
@@ -700,3 +699,152 @@ public class dp{
         System.out.println(canPartition(nums));
     }
 }
+/*Problem: String Conversion
+Convert String1 to String2 with only insertion & deletion.
+Print number of deletions & insertions.
+str1 = "pear" str2 ="sea" */
+public class dp{
+    public static void stringConversion(String str1,String str2){
+        int n=str1.length();
+        int m=str2.length();
+        int dp[][]=new int[n+1][m+1];
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=m;j++){
+                if(i==0 || j==0){
+                    dp[i][j]=0;
+                }else if(str1.charAt(i-1)==str2.charAt(j-1)){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }else{
+                    dp[i][j]=Math.max(dp[ i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        int lcs=dp[n][m];
+        int deletions=n-lcs;
+        int insertions=m-lcs;
+        System.out.println("Deletions: "+deletions);
+        System.out.println("Insertions: "+insertions);
+    }
+    public static void main(String[] args){
+        String str1="pear";
+        String str2="sea";
+        stringConversion(str1,str2);
+    }
+}
+
+/*Problem: Wildcard Matching(leetcode 44).
+Given a text and a wildcard pattern, implement wildcard pattern matching algorithm that finds if wildcard
+pattern is matched with text. The matching should cover the entire text (not partial text). The wildcard
+pattern can include the characters '?' and '*'
+. '?' - matches any single character
+. '*' - Matches any sequence of characters (including the empty sequence)
+
+Text = "baaabab"
+Pattern = " ***** ba ***** ab"
+output : true
+
+Text = "baaabab"
+Pattern = "a*ab"
+output : false
+ */
+public class dp{
+    public static boolean isMatch(String s,String p){
+        int n=s.length();
+        int m=p.length();
+        boolean dp[][]=new boolean[n+1][m+1];
+
+        //initialization of dp table.
+        dp[0][0]=true;
+
+        for(int i=1;i<n+1;i++){// pattern " ".
+            dp[i][0]=false;
+        }
+        // pattern "*****"
+        for(int j=1;j<m+1;j++){
+            if(p.charAt(j-1)=='*'){
+                dp[0][j]=dp[0][j-1];
+            }
+        }
+        // bottom up approach.
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                // ith char is equal to jth char and jth char==?.
+                if(s.charAt(i-1)==p.charAt(j-1) || p.charAt(j-1)=='?'){
+                    dp[i][j]=dp[i-1][j-1];
+                }else if(p.charAt(j-1)=='*'){
+                    dp[i][j]=dp[i][j-1] || dp[i-1][j];
+                }else{
+                    dp[i][j]=false;
+                }
+            }
+        }
+        return dp[n][m];
+    }
+    public static void main(String[] args){
+        String s="baaabab";
+        String p="*****ba*****ab";
+        System.out.println(isMatch(s,p));
+    }
+}
+
+/*Catalan's Number
+
+CO =1
+C1=1
+C2= CO.C1+ C1.CO = 2
+C3=CO.C2+C1.C1+C2.CO = 5
+C4 = */
+import java.util.*;
+public class dp{
+    // recursive method.
+    public static int catalan(int n){
+        // base case.
+        int ans=0;
+        if(n==0 || n==1){
+            return 1;
+        }
+        for(int i=0;i<=n-1;i++){
+            ans+=catalan(i)*catalan(n-i-1);
+        }
+        return ans;
+    }
+    // memoization method.
+    public static int catalan2(int n,int dp[]){
+        if(n==0 || n==1){
+            return 1;
+        }
+        if(dp[n]!=-1){
+            return dp[n];
+
+        }
+        int ans=0;
+        for(int i=0;i<=n-1;i++){
+           ans+=catalan2(i,dp)*catalan2(n-i-1,dp);
+        }
+        return dp[n]=ans;
+    }
+    // tabulation method.
+    public static int catalanTab(int n){
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            for(int j=0;j<=i-1;j++){
+                dp[i]+=dp[j]*dp[i-j-1];
+            }
+        }
+        return dp[n];
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the n:");
+        int n=sc.nextInt();
+       // System.out.println(catalan(n));
+        System.out.println(catalanTab(n));
+
+        int dp[]=new int[n+1];
+         Arrays.fill(dp,-1);
+      //  System.out.println(catalan2(n,dp));
+    }
+}
+
