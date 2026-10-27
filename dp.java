@@ -31,8 +31,7 @@
 
 // }
 
-/*import java.util.*;
-
+import java.util.*;
 public class dp {
     public static int countWays(int n, int dp[]) {
         if (n == 0) {
@@ -69,7 +68,7 @@ public class dp {
         System.out.println(countWays(n, dp));
         System.out.println(countwaysTab(n));
     }
-}*/
+}
 
 /*0-1 Knapsack
 val [ ] = 15, 14, 10, 45, 30
@@ -78,7 +77,7 @@ wt [ ] = 2, 5, 1, 3, 4
 W (total allowed weight) = 7
 
 ans = max Profit */
-/*import java.util.*;
+import java.util.*;
 public class dp {
     // tabulation method
     public static int knapsackTab(int val[],int wt[],int W,int n){
@@ -145,9 +144,9 @@ public class dp {
        print(dp);
        System.out.println(knapsackTab(val,wt,W,n));
     }
-}*/
+}
 
-/*public class Classroom {
+public class dp{
 public static int knapsack(int val[], int wt[], int W, int n) {
 if(W == 0 || n == 0) {
 return 0;
@@ -168,8 +167,7 @@ int W=7;
 System.out.println(knapsack);*/
 
 /*target Sum subset */
-
-/*public static boolean targetSumSubset(int arr[], int sum) {
+public static boolean targetSumSubset(int arr[], int sum) {
     int n = arr.length;
     boolean dp[][] = new boolean[n + 1][sum + 1];
     for (int i = 0; i <= n; i++) {
@@ -188,9 +186,9 @@ System.out.println(knapsack);*/
         }
     }
     return dp[n][sum];
-}*/
+}
 
-/*public static boolean tSSubset(int nums[],int sum){
+public static boolean tSSubset(int nums[],int sum){
     boolean dp[][]=new boolean[nums.length+1][sum+1];
     int n=nums.length;
     for(int i=0;i<=n;i++){
@@ -237,12 +235,12 @@ public static void main(String[] args) {
     // int sum = sc.nextInt();
 
     // System.out.println(targetSumSubset(arr, sum));
-}*/
+}
 
 /*unbounded knapsack */
 // using tabulation method
 
-/*public class  dp{
+public class  dp{
     public static int unboundedKnapsack(int val[],int wt[],int W){
         // int dp[]=new int[W+1];
         // for(int i=0;i<=W;i++){
@@ -365,18 +363,18 @@ rodLength = 8
 = 1 5 8 9 10 17 17 20 */
 import java.util.*;
 public class dp{
-    // public static int rodCutting(int price[],int n){
-    //     int dp[]=new int[n+1];
-    //     dp[0]=0;
-    //     for(int i=1;i<=n;i++){
-    //         int maxVal=Integer.MIN_VALUE;
-    //         for(int j=0;j<i;j++){
-    //             maxVal=Math.max(maxVal,price[j]+dp[i-j-1]);
-    //         }
-    //         dp[i]=maxVal;
-    //     }
-    //     return dp[n];
-    // }
+    public static int rodCutting(int price[],int n){
+        int dp[]=new int[n+1];
+        dp[0]=0;
+        for(int i=1;i<=n;i++){
+            int maxVal=Integer.MIN_VALUE;
+            for(int j=0;j<i;j++){
+                maxVal=Math.max(maxVal,price[j]+dp[i-j-1]);
+            }
+            dp[i]=maxVal;
+        }
+        return dp[n];
+    }
 
     public static int rodCutting(int length[],int price[],int totalRodLength){
         int n=price.length;
@@ -598,7 +596,7 @@ public class dp{
     }
 }
 
-/*Leet code 72=Edit Distance.
+/*Leet code 72(Edit Distance).
 Given two strings word1 and word2, return the minimum number of operations required to convert word1 to
 word2.
 You have the following three operations permitted on a word:
@@ -839,12 +837,11 @@ public class dp{
         Scanner sc=new Scanner(System.in);
         System.out.print("Enter the n:");
         int n=sc.nextInt();
-       // System.out.println(catalan(n));
-        System.out.println(catalanTab(n));
-
+        System.out.println(catalan(n));
         int dp[]=new int[n+1];
-         Arrays.fill(dp,-1);
-      //  System.out.println(catalan2(n,dp));
+        Arrays.fill(dp,-1);
+       System.out.println(catalan2(n,dp));
+        System.out.println(catalanTab(n));
     }
 }
 
