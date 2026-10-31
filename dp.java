@@ -845,3 +845,69 @@ public class dp{
     }
 }
 
+/*BST
+Problem-Counting Trees
+Find number of all ossible BSTs/ith given n nodes.
+
+n = 3 (10, 20, 30)
+ans = 5 */
+import java.util.*;
+public class dp{
+    public static int countTrees(int n){
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<n+1;i++){
+            for(int j=0;j<i;j++){
+                int left=dp[j];
+                int right=dp[i-j-1];
+                dp[i]+=left*right;
+            }
+        }
+        return dp[n];
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the n:");
+        int n=sc.nextInt();
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,-1);
+        System.out.println(countTrees(n));
+    }
+}
+
+/*Problem: Mountains & Valleys
+
+Mountain Ranges
+at any moment the number of down strokes cannot be more than number of up strokes.
+
+up stroke
+
+down stroke
+ */
+import java.util.*;
+public class dp{
+    public static int countMountainValley(int n){
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<n+1;i++){
+            for(int j=0;j<i;j++){
+                dp[i]+=dp[j]*dp[i-j-1];
+            }
+        }
+        return dp[n];
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the n:");
+        int n=sc.nextInt();
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,-1);
+        System.out.println(countMountainValley(n));
+    }
+}
+
+/*Matrix chain multiplication MCM. */
+ 
+
