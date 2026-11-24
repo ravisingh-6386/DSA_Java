@@ -28,6 +28,7 @@ DSA/
 ├── pattern.java            # Pattern printing problems
 ├── array.java              # Array operations and problems
 ├── arraylist.java          # ArrayList and dynamic arrays
+├── BinarySearchRange.java  # First and last occurrence using binary search
 ├── strings.java            # String manipulation and algorithms
 ├── recursion.java          # Recursive problem solving
 ├── sorting.java            # Sorting algorithms
@@ -54,6 +55,7 @@ DSA/
 | **pattern.java** | Number patterns, star patterns, pyramid patterns |
 | **array.java** | Array initialization, 1D/2D arrays, array operations, searching, rotation |
 | **arraylist.java** | ArrayList, dynamic arrays, list operations |
+| **BinarySearchRange.java** | Binary search first/last position, duplicates, edge cases |
 
 ### 3. **String Algorithms**
 | File | Topics |
@@ -132,20 +134,21 @@ DSA/
 6. strings.java      - String operations
 7. arraylist.java    - Dynamic arrays
 8. sorting.java      - Sorting algorithms
+9. BinarySearchRange.java - Binary search range queries
 ```
 
 ### Level 3: Advanced Concepts
 ```
-9. stack.java        - Stack data structure
-10. queue4.java       - Queue data structure
-11. linkedlist.java   - Linked lists
-12. recursion.java    - Recursive thinking
+10. stack.java        - Stack data structure
+11. queue4.java       - Queue data structure
+12. linkedlist.java   - Linked lists
+13. recursion.java    - Recursive thinking
 ```
 
 ### Level 4: Complex Structures
 ```
-13. trees.java        - Tree structures
-14. trie.java         - Advanced strings with Trie
+14. trees.java        - Tree structures
+15. trie.java         - Advanced strings with Trie
 ```
 
 ## 💡 Key Concepts by File
